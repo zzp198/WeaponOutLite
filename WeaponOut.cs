@@ -1,0 +1,53 @@
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ModLoader;
+
+namespace WeaponOut
+{
+    public class WeaponOut : Mod
+    {
+        // public static Mod itemCustomizer;
+        public static Mod Instance;
+
+        public override void Load()
+        {
+            Instance = this;
+            On_Main.DrawInventory += OnDrawInventory;
+            // itemCustomizer = ModLoader.GetMod("ItemCustomizer");
+        }
+
+        private void OnDrawInventory(On_Main.orig_DrawInventory invoke, Main self)
+        {
+            invoke(self);
+            var texture = Terraria.GameContent.TextureAssets.InventoryTickOn.Value;
+            var hoverText = "WeaponOut: " + Lang.inter[59];
+            var position = new Vector2(23, 4);
+            if (!Main.LocalPlayer.GetModPlayer<WOPlayer>().Show)
+            {
+                texture = Terraria.GameContent.TextureAssets.InventoryTickOff.Value;
+                hoverText = "WeaponOut: " + Lang.inter[60];
+            }
+
+            var textureRect = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+            if (textureRect.Contains(Main.mouseX, Main.mouseY))
+            {
+                Main.hoverItemName = hoverText;
+                Main.blockMouse = true;
+
+                // On click
+                if (Main.mouseLeft && Main.mouseLeftRelease)
+                {
+                    Main.LocalPlayer.GetModPlayer<WOPlayer>().Show = !Main.LocalPlayer.GetModPlayer<WOPlayer>().Show;
+                }
+            }
+
+            Main.spriteBatch.Draw(texture, position, null, Color.White);
+        }
+
+        public override void Unload()
+        {
+            On_Main.DrawInventory -= OnDrawInventory;
+            Instance = null;
+        }
+    }
+}

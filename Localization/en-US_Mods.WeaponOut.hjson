@@ -1,0 +1,65 @@
+Configs: {
+	WOConfig: {
+		DisplayName: W O Config
+
+		Default: {
+			Label: Default
+			Tooltip: ""
+		}
+
+		Generic: {
+			Label: Generic
+			Tooltip: ""
+		}
+
+		Magic: {
+			Label: Magic
+			Tooltip: ""
+		}
+
+		Melee: {
+			Label: Melee
+			Tooltip: ""
+		}
+
+		Ranged: {
+			Label: Ranged
+			Tooltip: ""
+		}
+
+		Summon: {
+			Label: Summon
+			Tooltip: ""
+		}
+
+		Throwing: {
+			Label: Throwing
+			Tooltip: ""
+		}
+
+		MagicSummonHybrid: {
+			Label: Magic Summon Hybrid
+			Tooltip: ""
+		}
+
+		MeleeNoSpeed: {
+			Label: Melee No Speed
+			Tooltip: ""
+		}
+
+		SummonMeleeSpeed: {
+			Label: Summon Melee Speed
+			Tooltip: ""
+		}
+
+		NotWeapon: {
+			Label: Not Weapon
+			Tooltip: ""
+		}
+
+		Scale: {
+			Label: Scale
+			Tooltip: Change not recommended
+		}
+	}
+}
