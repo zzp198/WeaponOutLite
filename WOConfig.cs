@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
 namespace WeaponOut;
@@ -18,6 +19,8 @@ public class WOConfig : ModConfig
     [DefaultValue(true)] public bool MeleeNoSpeed;
     [DefaultValue(true)] public bool SummonMeleeSpeed;
     [DefaultValue(true)] public bool NotWeapon;
+
+    public List<ItemDefinition> Blacklist = new();
 
     [Range(0, 1000), DefaultValue(100)] [Tooltip("Change not recommended")]
     public int Scale;

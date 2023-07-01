@@ -52,52 +52,59 @@ public static class DrawTool
     public static bool DefaultVisibility(PlayerDrawSet drawInfo)
     {
         var config = ModContent.GetInstance<WOConfig>();
-        if (drawInfo.heldItem.CountsAsClass(DamageClass.Default))
+        var item = drawInfo.heldItem;
+
+        if (config.Blacklist.Any(i => i.Type == item.type))
+        {
+            return false;
+        }
+
+        if (item.CountsAsClass(DamageClass.Default))
         {
             return config.Default;
         }
 
-        if (drawInfo.heldItem.CountsAsClass(DamageClass.Generic))
+        if (item.CountsAsClass(DamageClass.Generic))
         {
             return config.Generic;
         }
 
-        if (drawInfo.heldItem.CountsAsClass(DamageClass.Magic))
+        if (item.CountsAsClass(DamageClass.Magic))
         {
             return config.Magic;
         }
 
-        if (drawInfo.heldItem.CountsAsClass(DamageClass.Melee))
+        if (item.CountsAsClass(DamageClass.Melee))
         {
             return config.Melee;
         }
 
-        if (drawInfo.heldItem.CountsAsClass(DamageClass.Ranged))
+        if (item.CountsAsClass(DamageClass.Ranged))
         {
             return config.Ranged;
         }
 
-        if (drawInfo.heldItem.CountsAsClass(DamageClass.Summon))
+        if (item.CountsAsClass(DamageClass.Summon))
         {
             return config.Summon;
         }
 
-        if (drawInfo.heldItem.CountsAsClass(DamageClass.Throwing))
+        if (item.CountsAsClass(DamageClass.Throwing))
         {
             return config.Throwing;
         }
 
-        if (drawInfo.heldItem.CountsAsClass(DamageClass.MagicSummonHybrid))
+        if (item.CountsAsClass(DamageClass.MagicSummonHybrid))
         {
             return config.MagicSummonHybrid;
         }
 
-        if (drawInfo.heldItem.CountsAsClass(DamageClass.MeleeNoSpeed))
+        if (item.CountsAsClass(DamageClass.MeleeNoSpeed))
         {
             return config.MeleeNoSpeed;
         }
 
-        if (drawInfo.heldItem.CountsAsClass(DamageClass.SummonMeleeSpeed))
+        if (item.CountsAsClass(DamageClass.SummonMeleeSpeed))
         {
             return config.SummonMeleeSpeed;
         }
@@ -115,6 +122,7 @@ public static class DrawTool
         {
             return; // hide/show order by LocalPlayer!
         }
+
         if (!drawPlayer.active || drawPlayer.dead || drawPlayer.stoned) return;
         try
         {

@@ -61,5 +61,10 @@ Configs: {
 			Label: Scale
 			Tooltip: Change not recommended
 		}
+
+		Blacklist: {
+			Label: Blacklist
+			Tooltip: ""
+		}
 	}
 }
